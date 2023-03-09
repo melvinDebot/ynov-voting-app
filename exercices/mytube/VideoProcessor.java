@@ -1,15 +1,22 @@
 package exercices.mytube;
 
 public class VideoProcessor {
+    private VideoEncoder encoder;
+    private VideoDatabase database;
+
+    public VideoProcessor(VideoEncoder encoder, VideoDatabase database, NotificationService notification) {
+        this.encoder = encoder;
+        this.database = database;
+        this.notification = notification;
+    }
+
+    private NotificationService notification;
     public void process(Video video) {
-        var encoder = new VideoEncoder();
         encoder.encode(video);
 
-        var database = new VideoDatabase();
         database.store(video);
 
-        var emailService = new EmailService();
-        emailService.sendEmail(video.getUser());
+        notification.sendNotification(video.getUser());
     }
 }
 
