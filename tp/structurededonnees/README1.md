@@ -7,7 +7,7 @@ De plus, il est impossible de stocker null dans la `file`.
 1. Cette représentation a un petit problème car si la tête et la queue ont la même valeur, il n'est pas facile de détecter si cela veux dire que la file est pleine ou vide.
 Comment doit on faire pour détecter si la file est pleine ou vide ?
 Cette question a plusieurs réponses :)
-2. Ecrire une classe `Fifo` dans le package tp.poo.queue prenant en paramètre le nombre maximal d'élements que peut stocker la structure de données. Penser à vérifier les préconditions.
+2. Ecrire une classe `Fifo` dans le package tp.structurededonnees.queue prenant en paramètre le nombre maximal d'élements que peut stocker la structure de données. Penser à vérifier les préconditions.
 3. Ajouter une méthode `offer` qui ajoute un élement de type Object dans la file. Penser à vérifier les préconditions sachant que, de plus, on veut interdire de pouvoir stocker null.
 Comment détecter que la file est pleine ?
 Que faire si la file est pleine ?
