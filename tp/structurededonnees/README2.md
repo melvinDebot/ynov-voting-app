@@ -62,12 +62,14 @@ La classe `Table` est paramétrée par le type des éléments qu'elle contient e
 Des tests unitaires correspondant à l'implantation sont ici : `TableTest.java.md`.
 
 1. On souhaite écrire la classe `Table` ainsi que les méthode
-of qui prend les éléments séparés par des virgules et crée la table contenant ces éléments dans le même ordre.
-size qui indique combien d'éléments sont contenus dans la table.
+   - `of` qui prend les éléments séparés par des virgules et crée la table contenant ces éléments dans le même ordre.
+   - `size` qui indique combien d'éléments sont contenus dans la table.
 
 Écrire la classe `Table` sachant que la seule façon de créer une Table doit être de passer par la méthode `of`.
 Vérifier que les tests unitaires marqués "Q1" passent.
+
 2. On souhaite écrire la méthode `groupBy` qui prend une fonction de projection, qui étant un élément renvoie une clé et une fonction de comparaison qui indique comment comparer deux clés renvoyées par la fonction de projection. Cette méthode Les La méthode `groupBy` renvoie un nouveau groupe dont les clés sont celles renvoyées par la fonction de projection sur les éléments de la table. Pour chaque clé, ce groupe stocke en interne une liste des index des éléments pour lesquels l'appel de la fonction de projection sur élément renvoie cette clé. Enfin, les clés doivent êtres triées suivant la fonction de comparaison.
+
 3. On souhaite de plus, pour tester, qu'un groupe ait une méthode `keySize` qui renvoie le nombre de clés dans le groupe.
 Créer la classe `Group` à l'intérieur de la classe `Table` et implanter la méthode `groupBy` dans la classe `Table` ainsi que la méthode `keySize` dans la classe `Group`.
 Vérifier que les tests unitaires marqués "Q2" passent.
@@ -75,30 +77,34 @@ Note : Group stocke des index sur les éléments plutôt que des éléments eux-
 Indication : il existe déjà une structure de donnée en Java qui sait associer des valeurs à des clés en maintenant les clés triées en fonction d'une fonction de comparaison.
 Dans la classe `Group`, écrire la méthode d'affichage habituelle qui permet d'afficher une clé et sa liste d'index par ligne, dans l'ordre de la fonction de comparaison.
 Vérifier que les tests unitaires marqués "Q3" passent.
+
 4. On souhaite maintenant pouvoir créer des tables dynamiques dans lesquelles on peut ajouter des éléments. Pour cela, dans la classe `Table`, on va ajouter les méthodes `dynamic` qui renvoie une Table vide qui peut s’agrandir et add qui permet d'ajouter des éléments à une table dynamique.
 Dans le cas où la table a été crée avec of, donc dans le cas où la table est non mutable, il ne doit pas être possible d'ajouter des éléments à celle-ci.
 Dans le cas où des groupes ont déjà été définis sur une table, ajouter un élément avec add doit provoquer la mise à jour de ces groupes avec le nouvel index. Remarque : cela signifie qu'une Table doit connaître les Group qu'elle a permis de créer.
 Écrire les méthodes `dynamic` et `add`.
 Vérifier que les tests unitaires marqués "Q4" passent.
-Dans la classe `Group`, on souhaite écrire une méthode `forEach` qui prend en paramètre une fonction qui prend un élément en paramètre et fait un effet de bord. La méthode `forEach` appelle cette fonction avec chaque élément correspondant à chaque index dans le Group dans l'ordre des clés.
+5. Dans la classe `Group`, on souhaite écrire une méthode `forEach` qui prend en paramètre une fonction qui prend un élément en paramètre et fait un effet de bord. La méthode `forEach` appelle cette fonction avec chaque élément correspondant à chaque index dans le Group dans l'ordre des clés.
 Écrire la méthode `forEach` en utilisant un Stream comme implantation.
 Vérifier que les tests unitaires marqués "Q5" passent.
 Note : si vous ne trouvez pas comment l'écrire avec un Stream, faite une version sans Stream comme cela vous ne perdrez qu'un seul point à la question.
-5. On souhaite, toujours dans la classe `Group`, écrire une méthode `lookup` qui pour une clé renvoie une liste non mutable des éléments correspondants à la clé. L'implantation de cette liste ne doit pas stocker les éléments mais aller les chercher dans la Table et la complexité pire cas de l'implantation de la méthode `get` de la liste doit être en O(1).
+
+6. On souhaite, toujours dans la classe `Group`, écrire une méthode `lookup` qui pour une clé renvoie une liste non mutable des éléments correspondants à la clé. L'implantation de cette liste ne doit pas stocker les éléments mais aller les chercher dans la Table et la complexité pire cas de l'implantation de la méthode `get` de la liste doit être en O(1).
 Enfin, les changements de la Table postérieurs à l'appel à lookup ne doivent pas être visibles dans la liste, autrement dit, la liste à une sémantique snapshot at the beginning.
 Écrire la méthode `lookup`.
 Vérifier que les tests unitaires marqués "Q6" passent.
-6. On souhaite, dans la classe `Table`, écrire autre une méthode `groupBy`, une surcharge donc, qui ne prend qu'un seul paramètre et qui dans ce cas utilise l'ordre naturel des clés (la méthode `compareTo` des clés) pour trier celles-ci.
+
+7. On souhaite, dans la classe `Table`, écrire autre une méthode `groupBy`, une surcharge donc, qui ne prend qu'un seul paramètre et qui dans ce cas utilise l'ordre naturel des clés (la méthode `compareTo` des clés) pour trier celles-ci.
 Écrire la méthode `groupBy` avec un seul paramètre.
 Vérifier que les tests unitaires marqués "Q7" passent.
-7. On souhaite ajouter à la classe `Group` une méthode `stream()` qui renvoie un Stream des éléments de la table triés par les clés du groupe, donc voir les éléments dans le même ordre que la méthode `forEach`.
+
+8. On souhaite ajouter à la classe `Group` une méthode `stream()` qui renvoie un Stream des éléments de la table triés par les clés du groupe, donc voir les éléments dans le même ordre que la méthode `forEach`.
 Votre implantation doit contrôler les caractéristiques du Stream, mais dans un premier temps votre Stream n'a pas besoin savoir se couper en deux.
 Conseil : vous pouvez utliser un Spliterator pour acceder aux listes d'inces du Group et des Ieterator pour les parcourir.
 Vérifier que les tests unitaires marqués "Q8" passent.
-Modifier votre implantation de la méthode `stream()` pour que le Stream renvoyé sache se couper en deux.
+9. Modifier votre implantation de la méthode `stream()` pour que le Stream renvoyé sache se couper en deux.
 
 Vérifier que les tests unitaires marqués "Q9" passent.
-Enfin, on souhaite écrire une méthode `replace` qui prend deux éléments en paramètre et remplace toutes les occurrences du premier élément dans la table par le second élément.
+10. Enfin, on souhaite écrire une méthode `replace` qui prend deux éléments en paramètre et remplace toutes les occurrences du premier élément dans la table par le second élément.
 Pour que le remplacement soit possible, il faut s'assurer que pour tous les groupes créés sur la table, la fonction de projection du groupe ait la même valeur pour les deux éléments.
 Écrire la méthode `replace`.
 Vérifier que les tests unitaires marqués "Q10" passent.
