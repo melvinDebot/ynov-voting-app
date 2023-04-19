@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "MEWENEMESSE Jean-Pascal (ESIEA) Ruttner",
+  "author": "MEWENEMESSE Jean-Pascal (YNOV)",
   "license": "ISC",
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
