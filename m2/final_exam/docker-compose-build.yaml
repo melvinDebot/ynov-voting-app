@@ -1,23 +1,19 @@
 version: '3'
 services:
-  healthchecks:
-    build: 
-      context: healthchecks
-    image: imageName
   result:
     build:
-      context: result
-    image: tags/result
+      context: ./result
+    image: venocka/result
   seed-data:
     build: 
-      context: seed-data
-    image: imageName
+      context: ./seed-data
+    image: venocka/seed-data
   vote:
     build: 
-      context: vote
-    image: imageName
+      context: ./vote
+    image: venocka/vote
   worker:
     build: 
-      context: worker
-    image: imageName
+      context: ./worker
+    image: venocka/worker
 
