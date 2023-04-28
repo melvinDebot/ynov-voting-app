@@ -14,6 +14,7 @@ RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM"
 WORKDIR /source
 COPY *.csproj .
 RUN case ${TARGETPLATFORM} in \
+<<<<<<< HEAD
   "linux/amd64")  ARCH=x64  ;; \
   "linux/arm64")  ARCH=arm64  ;; \
   "linux/arm64/v8")  ARCH=arm64  ;; \
@@ -29,6 +30,23 @@ RUN  case ${TARGETPLATFORM} in \
   "linux/arm/v7") ARCH=arm  ;; \
   esac \
   && dotnet publish -c release -o /app -r linux-${ARCH} --self-contained false --no-restore
+=======
+         "linux/amd64")  ARCH=x64  ;; \
+         "linux/arm64")  ARCH=arm64  ;; \
+         "linux/arm64/v8")  ARCH=arm64  ;; \
+         "linux/arm/v7") ARCH=arm  ;; \
+    esac \
+    && dotnet restore -r linux-${ARCH}
+
+COPY . .
+RUN  case ${TARGETPLATFORM} in \
+         "linux/amd64")  ARCH=x64  ;; \
+         "linux/arm64")  ARCH=arm64  ;; \
+         "linux/arm64/v8")  ARCH=arm64  ;; \
+         "linux/arm/v7") ARCH=arm  ;; \
+    esac \
+    && dotnet publish -c release -o /app -r linux-${ARCH} --self-contained false --no-restore
+>>>>>>> 29fdf04acdb86f5765b65ac4c96d4818c3d0c2c0
 
 # app image
 FROM mcr.microsoft.com/dotnet/runtime:7.0
