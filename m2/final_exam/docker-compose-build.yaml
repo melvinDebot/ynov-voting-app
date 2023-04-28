@@ -1,0 +1,23 @@
+version: '3'
+services:
+  healthchecks:
+    build: 
+      context: healthchecks
+    image: imageName
+  result:
+    build:
+      context: result
+    image: tags/result
+  seed-data:
+    build: 
+      context: seed-data
+    image: imageName
+  vote:
+    build: 
+      context: vote
+    image: imageName
+  worker:
+    build: 
+      context: worker
+    image: imageName
+
